@@ -1,0 +1,20 @@
+{
+  "version": "36.0.20",
+  "files": {
+    "d2b8b81068c1a5c561b0f1c7948f55436b5921dac2461b77af4656899c4a38a1": {
+      "source": {
+        "path": "FastapiEcsStack.template.json",
+        "packaging": "file"
+      },
+      "destinations": {
+        "364119026921-eu-central-1": {
+          "bucketName": "cdk-hnb659fds-assets-364119026921-eu-central-1",
+          "objectKey": "d2b8b81068c1a5c561b0f1c7948f55436b5921dac2461b77af4656899c4a38a1.json",
+          "region": "eu-central-1",
+          "assumeRoleArn": "arn:${AWS::Partition}:iam::364119026921:role/cdk-hnb659fds-file-publishing-role-364119026921-eu-central-1"
+        }
+      }
+    }
+  },
+  "dockerImages": {}
+}

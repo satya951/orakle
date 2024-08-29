@@ -1,0 +1,900 @@
+{
+ "Resources": {
+  "FastapiVpcDB1A8DC8": {
+   "Type": "AWS::EC2::VPC",
+   "Properties": {
+    "CidrBlock": "10.0.0.0/16",
+    "EnableDnsHostnames": true,
+    "EnableDnsSupport": true,
+    "InstanceTenancy": "default",
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "FastapiEcsStack/FastapiVpc"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "FastapiEcsStack/FastapiVpc/Resource"
+   }
+  },
+  "FastapiVpcPublicSubnet1Subnet80DDBC14": {
+   "Type": "AWS::EC2::Subnet",
+   "Properties": {
+    "AvailabilityZone": "eu-central-1a",
+    "CidrBlock": "10.0.0.0/18",
+    "MapPublicIpOnLaunch": true,
+    "Tags": [
+     {
+      "Key": "aws-cdk:subnet-name",
+      "Value": "Public"
+     },
+     {
+      "Key": "aws-cdk:subnet-type",
+      "Value": "Public"
+     },
+     {
+      "Key": "Name",
+      "Value": "FastapiEcsStack/FastapiVpc/PublicSubnet1"
+     }
+    ],
+    "VpcId": {
+     "Ref": "FastapiVpcDB1A8DC8"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "FastapiEcsStack/FastapiVpc/PublicSubnet1/Subnet"
+   }
+  },
+  "FastapiVpcPublicSubnet1RouteTableD10D5DF1": {
+   "Type": "AWS::EC2::RouteTable",
+   "Properties": {
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "FastapiEcsStack/FastapiVpc/PublicSubnet1"
+     }
+    ],
+    "VpcId": {
+     "Ref": "FastapiVpcDB1A8DC8"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "FastapiEcsStack/FastapiVpc/PublicSubnet1/RouteTable"
+   }
+  },
+  "FastapiVpcPublicSubnet1RouteTableAssociationAAF0A87F": {
+   "Type": "AWS::EC2::SubnetRouteTableAssociation",
+   "Properties": {
+    "RouteTableId": {
+     "Ref": "FastapiVpcPublicSubnet1RouteTableD10D5DF1"
+    },
+    "SubnetId": {
+     "Ref": "FastapiVpcPublicSubnet1Subnet80DDBC14"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "FastapiEcsStack/FastapiVpc/PublicSubnet1/RouteTableAssociation"
+   }
+  },
+  "FastapiVpcPublicSubnet1DefaultRoute33F3C71B": {
+   "Type": "AWS::EC2::Route",
+   "Properties": {
+    "DestinationCidrBlock": "0.0.0.0/0",
+    "GatewayId": {
+     "Ref": "FastapiVpcIGW1A79DEB8"
+    },
+    "RouteTableId": {
+     "Ref": "FastapiVpcPublicSubnet1RouteTableD10D5DF1"
+    }
+   },
+   "DependsOn": [
+    "FastapiVpcVPCGWB6F532A2"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "FastapiEcsStack/FastapiVpc/PublicSubnet1/DefaultRoute"
+   }
+  },
+  "FastapiVpcPublicSubnet1EIPA200CDE1": {
+   "Type": "AWS::EC2::EIP",
+   "Properties": {
+    "Domain": "vpc",
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "FastapiEcsStack/FastapiVpc/PublicSubnet1"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "FastapiEcsStack/FastapiVpc/PublicSubnet1/EIP"
+   }
+  },
+  "FastapiVpcPublicSubnet1NATGatewayD964A5B8": {
+   "Type": "AWS::EC2::NatGateway",
+   "Properties": {
+    "AllocationId": {
+     "Fn::GetAtt": [
+      "FastapiVpcPublicSubnet1EIPA200CDE1",
+      "AllocationId"
+     ]
+    },
+    "SubnetId": {
+     "Ref": "FastapiVpcPublicSubnet1Subnet80DDBC14"
+    },
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "FastapiEcsStack/FastapiVpc/PublicSubnet1"
+     }
+    ]
+   },
+   "DependsOn": [
+    "FastapiVpcPublicSubnet1DefaultRoute33F3C71B",
+    "FastapiVpcPublicSubnet1RouteTableAssociationAAF0A87F"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "FastapiEcsStack/FastapiVpc/PublicSubnet1/NATGateway"
+   }
+  },
+  "FastapiVpcPublicSubnet2Subnet0CF8402C": {
+   "Type": "AWS::EC2::Subnet",
+   "Properties": {
+    "AvailabilityZone": "eu-central-1b",
+    "CidrBlock": "10.0.64.0/18",
+    "MapPublicIpOnLaunch": true,
+    "Tags": [
+     {
+      "Key": "aws-cdk:subnet-name",
+      "Value": "Public"
+     },
+     {
+      "Key": "aws-cdk:subnet-type",
+      "Value": "Public"
+     },
+     {
+      "Key": "Name",
+      "Value": "FastapiEcsStack/FastapiVpc/PublicSubnet2"
+     }
+    ],
+    "VpcId": {
+     "Ref": "FastapiVpcDB1A8DC8"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "FastapiEcsStack/FastapiVpc/PublicSubnet2/Subnet"
+   }
+  },
+  "FastapiVpcPublicSubnet2RouteTableDDAB4AB3": {
+   "Type": "AWS::EC2::RouteTable",
+   "Properties": {
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "FastapiEcsStack/FastapiVpc/PublicSubnet2"
+     }
+    ],
+    "VpcId": {
+     "Ref": "FastapiVpcDB1A8DC8"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "FastapiEcsStack/FastapiVpc/PublicSubnet2/RouteTable"
+   }
+  },
+  "FastapiVpcPublicSubnet2RouteTableAssociationF71AE732": {
+   "Type": "AWS::EC2::SubnetRouteTableAssociation",
+   "Properties": {
+    "RouteTableId": {
+     "Ref": "FastapiVpcPublicSubnet2RouteTableDDAB4AB3"
+    },
+    "SubnetId": {
+     "Ref": "FastapiVpcPublicSubnet2Subnet0CF8402C"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "FastapiEcsStack/FastapiVpc/PublicSubnet2/RouteTableAssociation"
+   }
+  },
+  "FastapiVpcPublicSubnet2DefaultRoute7FD4A0E5": {
+   "Type": "AWS::EC2::Route",
+   "Properties": {
+    "DestinationCidrBlock": "0.0.0.0/0",
+    "GatewayId": {
+     "Ref": "FastapiVpcIGW1A79DEB8"
+    },
+    "RouteTableId": {
+     "Ref": "FastapiVpcPublicSubnet2RouteTableDDAB4AB3"
+    }
+   },
+   "DependsOn": [
+    "FastapiVpcVPCGWB6F532A2"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "FastapiEcsStack/FastapiVpc/PublicSubnet2/DefaultRoute"
+   }
+  },
+  "FastapiVpcPublicSubnet2EIP39D55AE6": {
+   "Type": "AWS::EC2::EIP",
+   "Properties": {
+    "Domain": "vpc",
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "FastapiEcsStack/FastapiVpc/PublicSubnet2"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "FastapiEcsStack/FastapiVpc/PublicSubnet2/EIP"
+   }
+  },
+  "FastapiVpcPublicSubnet2NATGatewayBA33C022": {
+   "Type": "AWS::EC2::NatGateway",
+   "Properties": {
+    "AllocationId": {
+     "Fn::GetAtt": [
+      "FastapiVpcPublicSubnet2EIP39D55AE6",
+      "AllocationId"
+     ]
+    },
+    "SubnetId": {
+     "Ref": "FastapiVpcPublicSubnet2Subnet0CF8402C"
+    },
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "FastapiEcsStack/FastapiVpc/PublicSubnet2"
+     }
+    ]
+   },
+   "DependsOn": [
+    "FastapiVpcPublicSubnet2DefaultRoute7FD4A0E5",
+    "FastapiVpcPublicSubnet2RouteTableAssociationF71AE732"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "FastapiEcsStack/FastapiVpc/PublicSubnet2/NATGateway"
+   }
+  },
+  "FastapiVpcPrivateSubnet1Subnet049FC5C3": {
+   "Type": "AWS::EC2::Subnet",
+   "Properties": {
+    "AvailabilityZone": "eu-central-1a",
+    "CidrBlock": "10.0.128.0/18",
+    "MapPublicIpOnLaunch": false,
+    "Tags": [
+     {
+      "Key": "aws-cdk:subnet-name",
+      "Value": "Private"
+     },
+     {
+      "Key": "aws-cdk:subnet-type",
+      "Value": "Private"
+     },
+     {
+      "Key": "Name",
+      "Value": "FastapiEcsStack/FastapiVpc/PrivateSubnet1"
+     }
+    ],
+    "VpcId": {
+     "Ref": "FastapiVpcDB1A8DC8"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "FastapiEcsStack/FastapiVpc/PrivateSubnet1/Subnet"
+   }
+  },
+  "FastapiVpcPrivateSubnet1RouteTable1266B3C6": {
+   "Type": "AWS::EC2::RouteTable",
+   "Properties": {
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "FastapiEcsStack/FastapiVpc/PrivateSubnet1"
+     }
+    ],
+    "VpcId": {
+     "Ref": "FastapiVpcDB1A8DC8"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "FastapiEcsStack/FastapiVpc/PrivateSubnet1/RouteTable"
+   }
+  },
+  "FastapiVpcPrivateSubnet1RouteTableAssociation6A34F2AA": {
+   "Type": "AWS::EC2::SubnetRouteTableAssociation",
+   "Properties": {
+    "RouteTableId": {
+     "Ref": "FastapiVpcPrivateSubnet1RouteTable1266B3C6"
+    },
+    "SubnetId": {
+     "Ref": "FastapiVpcPrivateSubnet1Subnet049FC5C3"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "FastapiEcsStack/FastapiVpc/PrivateSubnet1/RouteTableAssociation"
+   }
+  },
+  "FastapiVpcPrivateSubnet1DefaultRouteFC8A7E6D": {
+   "Type": "AWS::EC2::Route",
+   "Properties": {
+    "DestinationCidrBlock": "0.0.0.0/0",
+    "NatGatewayId": {
+     "Ref": "FastapiVpcPublicSubnet1NATGatewayD964A5B8"
+    },
+    "RouteTableId": {
+     "Ref": "FastapiVpcPrivateSubnet1RouteTable1266B3C6"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "FastapiEcsStack/FastapiVpc/PrivateSubnet1/DefaultRoute"
+   }
+  },
+  "FastapiVpcPrivateSubnet2Subnet362D6017": {
+   "Type": "AWS::EC2::Subnet",
+   "Properties": {
+    "AvailabilityZone": "eu-central-1b",
+    "CidrBlock": "10.0.192.0/18",
+    "MapPublicIpOnLaunch": false,
+    "Tags": [
+     {
+      "Key": "aws-cdk:subnet-name",
+      "Value": "Private"
+     },
+     {
+      "Key": "aws-cdk:subnet-type",
+      "Value": "Private"
+     },
+     {
+      "Key": "Name",
+      "Value": "FastapiEcsStack/FastapiVpc/PrivateSubnet2"
+     }
+    ],
+    "VpcId": {
+     "Ref": "FastapiVpcDB1A8DC8"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "FastapiEcsStack/FastapiVpc/PrivateSubnet2/Subnet"
+   }
+  },
+  "FastapiVpcPrivateSubnet2RouteTableCE1A7CE7": {
+   "Type": "AWS::EC2::RouteTable",
+   "Properties": {
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "FastapiEcsStack/FastapiVpc/PrivateSubnet2"
+     }
+    ],
+    "VpcId": {
+     "Ref": "FastapiVpcDB1A8DC8"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "FastapiEcsStack/FastapiVpc/PrivateSubnet2/RouteTable"
+   }
+  },
+  "FastapiVpcPrivateSubnet2RouteTableAssociation7A04A846": {
+   "Type": "AWS::EC2::SubnetRouteTableAssociation",
+   "Properties": {
+    "RouteTableId": {
+     "Ref": "FastapiVpcPrivateSubnet2RouteTableCE1A7CE7"
+    },
+    "SubnetId": {
+     "Ref": "FastapiVpcPrivateSubnet2Subnet362D6017"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "FastapiEcsStack/FastapiVpc/PrivateSubnet2/RouteTableAssociation"
+   }
+  },
+  "FastapiVpcPrivateSubnet2DefaultRoute612ACA1C": {
+   "Type": "AWS::EC2::Route",
+   "Properties": {
+    "DestinationCidrBlock": "0.0.0.0/0",
+    "NatGatewayId": {
+     "Ref": "FastapiVpcPublicSubnet2NATGatewayBA33C022"
+    },
+    "RouteTableId": {
+     "Ref": "FastapiVpcPrivateSubnet2RouteTableCE1A7CE7"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "FastapiEcsStack/FastapiVpc/PrivateSubnet2/DefaultRoute"
+   }
+  },
+  "FastapiVpcIGW1A79DEB8": {
+   "Type": "AWS::EC2::InternetGateway",
+   "Properties": {
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "FastapiEcsStack/FastapiVpc"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "FastapiEcsStack/FastapiVpc/IGW"
+   }
+  },
+  "FastapiVpcVPCGWB6F532A2": {
+   "Type": "AWS::EC2::VPCGatewayAttachment",
+   "Properties": {
+    "InternetGatewayId": {
+     "Ref": "FastapiVpcIGW1A79DEB8"
+    },
+    "VpcId": {
+     "Ref": "FastapiVpcDB1A8DC8"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "FastapiEcsStack/FastapiVpc/VPCGW"
+   }
+  },
+  "FastapiClusterBAEFC6F0": {
+   "Type": "AWS::ECS::Cluster",
+   "Metadata": {
+    "aws:cdk:path": "FastapiEcsStack/FastapiCluster/Resource"
+   }
+  },
+  "FastapiServiceLB2CC60C7C": {
+   "Type": "AWS::ElasticLoadBalancingV2::LoadBalancer",
+   "Properties": {
+    "LoadBalancerAttributes": [
+     {
+      "Key": "deletion_protection.enabled",
+      "Value": "false"
+     }
+    ],
+    "Scheme": "internet-facing",
+    "SecurityGroups": [
+     {
+      "Fn::GetAtt": [
+       "FastapiServiceLBSecurityGroup2CAF163E",
+       "GroupId"
+      ]
+     }
+    ],
+    "Subnets": [
+     {
+      "Ref": "FastapiVpcPublicSubnet1Subnet80DDBC14"
+     },
+     {
+      "Ref": "FastapiVpcPublicSubnet2Subnet0CF8402C"
+     }
+    ],
+    "Type": "application"
+   },
+   "DependsOn": [
+    "FastapiVpcPublicSubnet1DefaultRoute33F3C71B",
+    "FastapiVpcPublicSubnet1RouteTableAssociationAAF0A87F",
+    "FastapiVpcPublicSubnet2DefaultRoute7FD4A0E5",
+    "FastapiVpcPublicSubnet2RouteTableAssociationF71AE732"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "FastapiEcsStack/FastapiService/LB/Resource"
+   }
+  },
+  "FastapiServiceLBSecurityGroup2CAF163E": {
+   "Type": "AWS::EC2::SecurityGroup",
+   "Properties": {
+    "GroupDescription": "Automatically created Security Group for ELB FastapiEcsStackFastapiServiceLBF8C7B4D0",
+    "SecurityGroupIngress": [
+     {
+      "CidrIp": "0.0.0.0/0",
+      "Description": "Allow from anyone on port 80",
+      "FromPort": 80,
+      "IpProtocol": "tcp",
+      "ToPort": 80
+     }
+    ],
+    "VpcId": {
+     "Ref": "FastapiVpcDB1A8DC8"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "FastapiEcsStack/FastapiService/LB/SecurityGroup/Resource"
+   }
+  },
+  "FastapiServiceLBSecurityGrouptoFastapiEcsStackFastapiServiceSecurityGroup46EFFF0980001F9762E1": {
+   "Type": "AWS::EC2::SecurityGroupEgress",
+   "Properties": {
+    "Description": "Load balancer to target",
+    "DestinationSecurityGroupId": {
+     "Fn::GetAtt": [
+      "FastapiServiceSecurityGroup0F6E67A4",
+      "GroupId"
+     ]
+    },
+    "FromPort": 8000,
+    "GroupId": {
+     "Fn::GetAtt": [
+      "FastapiServiceLBSecurityGroup2CAF163E",
+      "GroupId"
+     ]
+    },
+    "IpProtocol": "tcp",
+    "ToPort": 8000
+   },
+   "Metadata": {
+    "aws:cdk:path": "FastapiEcsStack/FastapiService/LB/SecurityGroup/to FastapiEcsStackFastapiServiceSecurityGroup46EFFF09:8000"
+   }
+  },
+  "FastapiServiceLBPublicListener9F147FA4": {
+   "Type": "AWS::ElasticLoadBalancingV2::Listener",
+   "Properties": {
+    "DefaultActions": [
+     {
+      "TargetGroupArn": {
+       "Ref": "FastapiServiceLBPublicListenerECSGroupBCD30B44"
+      },
+      "Type": "forward"
+     }
+    ],
+    "LoadBalancerArn": {
+     "Ref": "FastapiServiceLB2CC60C7C"
+    },
+    "Port": 80,
+    "Protocol": "HTTP"
+   },
+   "Metadata": {
+    "aws:cdk:path": "FastapiEcsStack/FastapiService/LB/PublicListener/Resource"
+   }
+  },
+  "FastapiServiceLBPublicListenerECSGroupBCD30B44": {
+   "Type": "AWS::ElasticLoadBalancingV2::TargetGroup",
+   "Properties": {
+    "Port": 80,
+    "Protocol": "HTTP",
+    "TargetGroupAttributes": [
+     {
+      "Key": "stickiness.enabled",
+      "Value": "false"
+     }
+    ],
+    "TargetType": "ip",
+    "VpcId": {
+     "Ref": "FastapiVpcDB1A8DC8"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "FastapiEcsStack/FastapiService/LB/PublicListener/ECSGroup/Resource"
+   }
+  },
+  "FastapiServiceTaskDefTaskRole7FD02270": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "ecs-tasks.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "FastapiEcsStack/FastapiService/TaskDef/TaskRole/Resource"
+   }
+  },
+  "FastapiServiceTaskDefB5C2B820": {
+   "Type": "AWS::ECS::TaskDefinition",
+   "Properties": {
+    "ContainerDefinitions": [
+     {
+      "Essential": true,
+      "Image": {
+       "Fn::Join": [
+        "",
+        [
+         "364119026921.dkr.ecr.eu-central-1.",
+         {
+          "Ref": "AWS::URLSuffix"
+         },
+         "/devops:latest"
+        ]
+       ]
+      },
+      "LogConfiguration": {
+       "LogDriver": "awslogs",
+       "Options": {
+        "awslogs-group": {
+         "Ref": "FastapiServiceTaskDefwebLogGroupF7714DEA"
+        },
+        "awslogs-stream-prefix": "FastapiService",
+        "awslogs-region": "eu-central-1"
+       }
+      },
+      "Name": "web",
+      "PortMappings": [
+       {
+        "ContainerPort": 8000,
+        "Protocol": "tcp"
+       }
+      ]
+     }
+    ],
+    "Cpu": "256",
+    "ExecutionRoleArn": {
+     "Fn::GetAtt": [
+      "FastapiServiceTaskDefExecutionRole53FF6800",
+      "Arn"
+     ]
+    },
+    "Family": "FastapiEcsStackFastapiServiceTaskDefEF102534",
+    "Memory": "512",
+    "NetworkMode": "awsvpc",
+    "RequiresCompatibilities": [
+     "FARGATE"
+    ],
+    "TaskRoleArn": {
+     "Fn::GetAtt": [
+      "FastapiServiceTaskDefTaskRole7FD02270",
+      "Arn"
+     ]
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "FastapiEcsStack/FastapiService/TaskDef/Resource"
+   }
+  },
+  "FastapiServiceTaskDefwebLogGroupF7714DEA": {
+   "Type": "AWS::Logs::LogGroup",
+   "UpdateReplacePolicy": "Retain",
+   "DeletionPolicy": "Retain",
+   "Metadata": {
+    "aws:cdk:path": "FastapiEcsStack/FastapiService/TaskDef/web/LogGroup/Resource"
+   }
+  },
+  "FastapiServiceTaskDefExecutionRole53FF6800": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "ecs-tasks.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "FastapiEcsStack/FastapiService/TaskDef/ExecutionRole/Resource"
+   }
+  },
+  "FastapiServiceTaskDefExecutionRoleDefaultPolicy62BAE4A4": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": [
+        "ecr:BatchCheckLayerAvailability",
+        "ecr:GetDownloadUrlForLayer",
+        "ecr:BatchGetImage"
+       ],
+       "Effect": "Allow",
+       "Resource": "arn:aws:ecr:eu-central-1:364119026921:repository/devops"
+      },
+      {
+       "Action": "ecr:GetAuthorizationToken",
+       "Effect": "Allow",
+       "Resource": "*"
+      },
+      {
+       "Action": [
+        "logs:CreateLogStream",
+        "logs:PutLogEvents"
+       ],
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::GetAtt": [
+         "FastapiServiceTaskDefwebLogGroupF7714DEA",
+         "Arn"
+        ]
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "FastapiServiceTaskDefExecutionRoleDefaultPolicy62BAE4A4",
+    "Roles": [
+     {
+      "Ref": "FastapiServiceTaskDefExecutionRole53FF6800"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "FastapiEcsStack/FastapiService/TaskDef/ExecutionRole/DefaultPolicy/Resource"
+   }
+  },
+  "FastapiService8C15BD9B": {
+   "Type": "AWS::ECS::Service",
+   "Properties": {
+    "Cluster": {
+     "Ref": "FastapiClusterBAEFC6F0"
+    },
+    "DeploymentConfiguration": {
+     "Alarms": {
+      "AlarmNames": [],
+      "Enable": false,
+      "Rollback": false
+     },
+     "MaximumPercent": 200,
+     "MinimumHealthyPercent": 50
+    },
+    "EnableECSManagedTags": false,
+    "HealthCheckGracePeriodSeconds": 60,
+    "LaunchType": "FARGATE",
+    "LoadBalancers": [
+     {
+      "ContainerName": "web",
+      "ContainerPort": 8000,
+      "TargetGroupArn": {
+       "Ref": "FastapiServiceLBPublicListenerECSGroupBCD30B44"
+      }
+     }
+    ],
+    "NetworkConfiguration": {
+     "AwsvpcConfiguration": {
+      "AssignPublicIp": "DISABLED",
+      "SecurityGroups": [
+       {
+        "Fn::GetAtt": [
+         "FastapiServiceSecurityGroup0F6E67A4",
+         "GroupId"
+        ]
+       }
+      ],
+      "Subnets": [
+       {
+        "Ref": "FastapiVpcPrivateSubnet1Subnet049FC5C3"
+       },
+       {
+        "Ref": "FastapiVpcPrivateSubnet2Subnet362D6017"
+       }
+      ]
+     }
+    },
+    "TaskDefinition": {
+     "Ref": "FastapiServiceTaskDefB5C2B820"
+    }
+   },
+   "DependsOn": [
+    "FastapiServiceLBPublicListenerECSGroupBCD30B44",
+    "FastapiServiceLBPublicListener9F147FA4",
+    "FastapiServiceTaskDefTaskRole7FD02270"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "FastapiEcsStack/FastapiService/Service/Service"
+   }
+  },
+  "FastapiServiceSecurityGroup0F6E67A4": {
+   "Type": "AWS::EC2::SecurityGroup",
+   "Properties": {
+    "GroupDescription": "FastapiEcsStack/FastapiService/Service/SecurityGroup",
+    "SecurityGroupEgress": [
+     {
+      "CidrIp": "0.0.0.0/0",
+      "Description": "Allow all outbound traffic by default",
+      "IpProtocol": "-1"
+     }
+    ],
+    "VpcId": {
+     "Ref": "FastapiVpcDB1A8DC8"
+    }
+   },
+   "DependsOn": [
+    "FastapiServiceTaskDefTaskRole7FD02270"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "FastapiEcsStack/FastapiService/Service/SecurityGroup/Resource"
+   }
+  },
+  "FastapiServiceSecurityGroupfromFastapiEcsStackFastapiServiceLBSecurityGroup06B27D4980002BE669F5": {
+   "Type": "AWS::EC2::SecurityGroupIngress",
+   "Properties": {
+    "Description": "Load balancer to target",
+    "FromPort": 8000,
+    "GroupId": {
+     "Fn::GetAtt": [
+      "FastapiServiceSecurityGroup0F6E67A4",
+      "GroupId"
+     ]
+    },
+    "IpProtocol": "tcp",
+    "SourceSecurityGroupId": {
+     "Fn::GetAtt": [
+      "FastapiServiceLBSecurityGroup2CAF163E",
+      "GroupId"
+     ]
+    },
+    "ToPort": 8000
+   },
+   "DependsOn": [
+    "FastapiServiceTaskDefTaskRole7FD02270"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "FastapiEcsStack/FastapiService/Service/SecurityGroup/from FastapiEcsStackFastapiServiceLBSecurityGroup06B27D49:8000"
+   }
+  },
+  "CDKMetadata": {
+   "Type": "AWS::CDK::Metadata",
+   "Properties": {
+    "Analytics": "v2:deflate64:H4sIAAAAAAAA/32S3W7CMAyFn2X3IRNsPAAwhpDQVhXELXKDKR4hqWIHhKq++9SWv7FpVz7+euLYbnq623/V3Sc4csesdx1LmS7nAman4MirEk1Pl8vCqNHGLZORSmJmycxj5lBqdlOpj4ILyCze+I0NmL0hEPLuaq7FeJrU4QNkAoJHOKkk0AEEb4WnTjA4vBraTs7ZQATMdo9O1BxNDCSnSfCxaHr4F4zzgMy/8NQ1vFJoWJcjG1kw1K6LfIeQQz0V795wQ44uMz0S7wTIYbhj57NzDAcy7Z5aWV8XdIqFZxIfTkNgrDtYFSD19KwHRWHJNAuceVgPwYIzuH6oiBZYyFgP66xxkMsPPV3+fbqZ60d+7yMWdGfPRd99X0DIUa67vUsrRbDXZerbp9DExFsyzb9rVaWsz1mXM59fS1x0VakU2cfQrugzShHbJ3amlUpOsvXu+UV3e7r/9MVEnRCd0B512sZvGDCkidkCAAA="
+   },
+   "Metadata": {
+    "aws:cdk:path": "FastapiEcsStack/CDKMetadata/Default"
+   }
+  }
+ },
+ "Outputs": {
+  "FastapiServiceLoadBalancerDNS3784472B": {
+   "Value": {
+    "Fn::GetAtt": [
+     "FastapiServiceLB2CC60C7C",
+     "DNSName"
+    ]
+   }
+  },
+  "FastapiServiceServiceURL5D8B5CCF": {
+   "Value": {
+    "Fn::Join": [
+     "",
+     [
+      "http://",
+      {
+       "Fn::GetAtt": [
+        "FastapiServiceLB2CC60C7C",
+        "DNSName"
+       ]
+      }
+     ]
+    ]
+   }
+  }
+ },
+ "Parameters": {
+  "BootstrapVersion": {
+   "Type": "AWS::SSM::Parameter::Value<String>",
+   "Default": "/cdk-bootstrap/hnb659fds/version",
+   "Description": "Version of the CDK Bootstrap resources in this environment, automatically retrieved from SSM Parameter Store. [cdk:skip]"
+  }
+ },
+ "Rules": {
+  "CheckBootstrapVersion": {
+   "Assertions": [
+    {
+     "Assert": {
+      "Fn::Not": [
+       {
+        "Fn::Contains": [
+         [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5"
+         ],
+         {
+          "Ref": "BootstrapVersion"
+         }
+        ]
+       }
+      ]
+     },
+     "AssertDescription": "CDK bootstrap stack version 6 required. Please run 'cdk bootstrap' with a recent version of the CDK CLI."
+    }
+   ]
+  }
+ }
+}

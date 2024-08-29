@@ -1,0 +1,299 @@
+{
+  "version": "36.0.20",
+  "artifacts": {
+    "FastapiEcsStack.assets": {
+      "type": "cdk:asset-manifest",
+      "properties": {
+        "file": "FastapiEcsStack.assets.json",
+        "requiresBootstrapStackVersion": 6,
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
+      }
+    },
+    "FastapiEcsStack": {
+      "type": "aws:cloudformation:stack",
+      "environment": "aws://364119026921/eu-central-1",
+      "properties": {
+        "templateFile": "FastapiEcsStack.template.json",
+        "terminationProtection": false,
+        "validateOnSynth": false,
+        "assumeRoleArn": "arn:${AWS::Partition}:iam::364119026921:role/cdk-hnb659fds-deploy-role-364119026921-eu-central-1",
+        "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::364119026921:role/cdk-hnb659fds-cfn-exec-role-364119026921-eu-central-1",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-364119026921-eu-central-1/d2b8b81068c1a5c561b0f1c7948f55436b5921dac2461b77af4656899c4a38a1.json",
+        "requiresBootstrapStackVersion": 6,
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
+        "additionalDependencies": [
+          "FastapiEcsStack.assets"
+        ],
+        "lookupRole": {
+          "arn": "arn:${AWS::Partition}:iam::364119026921:role/cdk-hnb659fds-lookup-role-364119026921-eu-central-1",
+          "requiresBootstrapStackVersion": 8,
+          "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
+        }
+      },
+      "dependencies": [
+        "FastapiEcsStack.assets"
+      ],
+      "metadata": {
+        "/FastapiEcsStack/FastapiVpc/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "FastapiVpcDB1A8DC8"
+          }
+        ],
+        "/FastapiEcsStack/FastapiVpc/PublicSubnet1/Subnet": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "FastapiVpcPublicSubnet1Subnet80DDBC14"
+          }
+        ],
+        "/FastapiEcsStack/FastapiVpc/PublicSubnet1/RouteTable": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "FastapiVpcPublicSubnet1RouteTableD10D5DF1"
+          }
+        ],
+        "/FastapiEcsStack/FastapiVpc/PublicSubnet1/RouteTableAssociation": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "FastapiVpcPublicSubnet1RouteTableAssociationAAF0A87F"
+          }
+        ],
+        "/FastapiEcsStack/FastapiVpc/PublicSubnet1/DefaultRoute": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "FastapiVpcPublicSubnet1DefaultRoute33F3C71B"
+          }
+        ],
+        "/FastapiEcsStack/FastapiVpc/PublicSubnet1/EIP": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "FastapiVpcPublicSubnet1EIPA200CDE1"
+          }
+        ],
+        "/FastapiEcsStack/FastapiVpc/PublicSubnet1/NATGateway": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "FastapiVpcPublicSubnet1NATGatewayD964A5B8"
+          }
+        ],
+        "/FastapiEcsStack/FastapiVpc/PublicSubnet2/Subnet": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "FastapiVpcPublicSubnet2Subnet0CF8402C"
+          }
+        ],
+        "/FastapiEcsStack/FastapiVpc/PublicSubnet2/RouteTable": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "FastapiVpcPublicSubnet2RouteTableDDAB4AB3"
+          }
+        ],
+        "/FastapiEcsStack/FastapiVpc/PublicSubnet2/RouteTableAssociation": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "FastapiVpcPublicSubnet2RouteTableAssociationF71AE732"
+          }
+        ],
+        "/FastapiEcsStack/FastapiVpc/PublicSubnet2/DefaultRoute": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "FastapiVpcPublicSubnet2DefaultRoute7FD4A0E5"
+          }
+        ],
+        "/FastapiEcsStack/FastapiVpc/PublicSubnet2/EIP": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "FastapiVpcPublicSubnet2EIP39D55AE6"
+          }
+        ],
+        "/FastapiEcsStack/FastapiVpc/PublicSubnet2/NATGateway": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "FastapiVpcPublicSubnet2NATGatewayBA33C022"
+          }
+        ],
+        "/FastapiEcsStack/FastapiVpc/PrivateSubnet1/Subnet": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "FastapiVpcPrivateSubnet1Subnet049FC5C3"
+          }
+        ],
+        "/FastapiEcsStack/FastapiVpc/PrivateSubnet1/RouteTable": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "FastapiVpcPrivateSubnet1RouteTable1266B3C6"
+          }
+        ],
+        "/FastapiEcsStack/FastapiVpc/PrivateSubnet1/RouteTableAssociation": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "FastapiVpcPrivateSubnet1RouteTableAssociation6A34F2AA"
+          }
+        ],
+        "/FastapiEcsStack/FastapiVpc/PrivateSubnet1/DefaultRoute": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "FastapiVpcPrivateSubnet1DefaultRouteFC8A7E6D"
+          }
+        ],
+        "/FastapiEcsStack/FastapiVpc/PrivateSubnet2/Subnet": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "FastapiVpcPrivateSubnet2Subnet362D6017"
+          }
+        ],
+        "/FastapiEcsStack/FastapiVpc/PrivateSubnet2/RouteTable": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "FastapiVpcPrivateSubnet2RouteTableCE1A7CE7"
+          }
+        ],
+        "/FastapiEcsStack/FastapiVpc/PrivateSubnet2/RouteTableAssociation": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "FastapiVpcPrivateSubnet2RouteTableAssociation7A04A846"
+          }
+        ],
+        "/FastapiEcsStack/FastapiVpc/PrivateSubnet2/DefaultRoute": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "FastapiVpcPrivateSubnet2DefaultRoute612ACA1C"
+          }
+        ],
+        "/FastapiEcsStack/FastapiVpc/IGW": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "FastapiVpcIGW1A79DEB8"
+          }
+        ],
+        "/FastapiEcsStack/FastapiVpc/VPCGW": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "FastapiVpcVPCGWB6F532A2"
+          }
+        ],
+        "/FastapiEcsStack/FastapiCluster/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "FastapiClusterBAEFC6F0"
+          }
+        ],
+        "/FastapiEcsStack/FastapiService/LB/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "FastapiServiceLB2CC60C7C"
+          }
+        ],
+        "/FastapiEcsStack/FastapiService/LB/SecurityGroup/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "FastapiServiceLBSecurityGroup2CAF163E"
+          }
+        ],
+        "/FastapiEcsStack/FastapiService/LB/SecurityGroup/to FastapiEcsStackFastapiServiceSecurityGroup46EFFF09:8000": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "FastapiServiceLBSecurityGrouptoFastapiEcsStackFastapiServiceSecurityGroup46EFFF0980001F9762E1"
+          }
+        ],
+        "/FastapiEcsStack/FastapiService/LB/PublicListener/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "FastapiServiceLBPublicListener9F147FA4"
+          }
+        ],
+        "/FastapiEcsStack/FastapiService/LB/PublicListener/ECSGroup/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "FastapiServiceLBPublicListenerECSGroupBCD30B44"
+          }
+        ],
+        "/FastapiEcsStack/FastapiService/LoadBalancerDNS": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "FastapiServiceLoadBalancerDNS3784472B"
+          }
+        ],
+        "/FastapiEcsStack/FastapiService/ServiceURL": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "FastapiServiceServiceURL5D8B5CCF"
+          }
+        ],
+        "/FastapiEcsStack/FastapiService/TaskDef/TaskRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "FastapiServiceTaskDefTaskRole7FD02270"
+          }
+        ],
+        "/FastapiEcsStack/FastapiService/TaskDef/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "FastapiServiceTaskDefB5C2B820"
+          }
+        ],
+        "/FastapiEcsStack/FastapiService/TaskDef/web/LogGroup/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "FastapiServiceTaskDefwebLogGroupF7714DEA"
+          }
+        ],
+        "/FastapiEcsStack/FastapiService/TaskDef/ExecutionRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "FastapiServiceTaskDefExecutionRole53FF6800"
+          }
+        ],
+        "/FastapiEcsStack/FastapiService/TaskDef/ExecutionRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "FastapiServiceTaskDefExecutionRoleDefaultPolicy62BAE4A4"
+          }
+        ],
+        "/FastapiEcsStack/FastapiService/Service/Service": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "FastapiService8C15BD9B"
+          }
+        ],
+        "/FastapiEcsStack/FastapiService/Service/SecurityGroup/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "FastapiServiceSecurityGroup0F6E67A4"
+          }
+        ],
+        "/FastapiEcsStack/FastapiService/Service/SecurityGroup/from FastapiEcsStackFastapiServiceLBSecurityGroup06B27D49:8000": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "FastapiServiceSecurityGroupfromFastapiEcsStackFastapiServiceLBSecurityGroup06B27D4980002BE669F5"
+          }
+        ],
+        "/FastapiEcsStack/CDKMetadata/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CDKMetadata"
+          }
+        ],
+        "/FastapiEcsStack/BootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BootstrapVersion"
+          }
+        ],
+        "/FastapiEcsStack/CheckBootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CheckBootstrapVersion"
+          }
+        ]
+      },
+      "displayName": "FastapiEcsStack"
+    },
+    "Tree": {
+      "type": "cdk:tree",
+      "properties": {
+        "file": "tree.json"
+      }
+    }
+  }
+}
